@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erzurum Kurye | Şehir İçi ve İlçeler Arası Kurye</title>
+  <meta name="description" content="Erzurum merkezden en uzak ilçeye kadar hızlı ve güvenli kurye hizmeti. Erzurum içi ve ilçeler arası gönderiler için hemen arayın.">
+  <meta name="theme-color" content="#F5F8FB">
+
+  <meta property="og:title" content="Erzurum Kurye – Erzurum'un Her Yerine Hızla ve Güvenle">
+  <meta property="og:description" content="Erzurum içi ve ilçeler arası kurye. Hemen arayın.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- TODO: gerçek telefon numarasını yaz (aşağıdaki CONFIG ile aynı olmalı) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Erzurum Kurye",
+    "telephone": "+905XXXXXXXXX",
+    "address": { "@type": "PostalAddress", "addressLocality": "Erzurum", "addressCountry": "TR" },
+    "areaServed": "Erzurum"
+  }
+  </script>
+
+  <style>
+    :root {
+      --snow: #F5F8FB;
+      --ice: #DDE8F1;
+      --ice-2: #C4D6E6;
+      --ink: #0D1B2A;
+      --ink-soft: #3D4C5C;
+      --red: #D83A10;
+      --red-dark: #B52E0B;
+      --line: 2px solid var(--ink);
+      --pad: clamp(20px, 5vw, 56px);
+      --max: 1240px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--snow);
+      color: var(--ink);
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 64px; /* mobil sabit bar */
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .eyebrow b { color: var(--red); font-weight: 500; }
+    .display {
+      font-weight: 850; font-stretch: 68%;
+      text-transform: uppercase; line-height: .92; letter-spacing: -.005em;
+      margin: 0;
+    }
+    .red { color: var(--red); }
+
+    /* ───────── Butonlar ───────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+      font-weight: 800; font-stretch: 85%; text-transform: uppercase; letter-spacing: .02em;
+      font-size: 1.1rem; text-decoration: none; line-height: 1;
+      padding: 1.1rem 1.7rem; border: var(--line); border-radius: 0;
+      transition: transform .15s ease, background .15s ease, color .15s ease;
+      cursor: pointer;
+    }
+    .btn:active { transform: translate(2px, 2px); }
+    .btn svg { width: 1.2em; height: 1.2em; flex: none; }
+    .btn-red { background: var(--red); border-color: var(--red); color: #fff; box-shadow: 5px 5px 0 var(--ink); }
+    .btn-red:hover { background: var(--red-dark); border-color: var(--red-dark); }
+    .btn-red:active { box-shadow: 2px 2px 0 var(--ink); }
+    .btn-line { background: transparent; color: var(--ink); }
+    .btn-line:hover { background: var(--ink); color: var(--snow); }
+
+    /* ───────── Üst bar ───────── */
+    .nav {
+      position: sticky; top: 0; z-index: 30;
+      background: var(--snow); border-bottom: var(--line);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 1rem; }
+    .logo {
+      display: inline-flex; align-items: center; gap: .6rem; text-decoration: none;
+      font-weight: 850; font-stretch: 70%; font-size: 1.4rem; text-transform: uppercase; letter-spacing: .01em; white-space: nowrap;
+    }
+    .logo i { width: 14px; height: 14px; background: var(--red); display: block; }
+    .nav-links { display: none; gap: 2rem; }
+    .nav-links a {
+      font-family: 'IBM Plex Mono', monospace; font-size: .8rem; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav .btn { padding: .75rem 1.1rem; font-size: .95rem; box-shadow: 3px 3px 0 var(--ink); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+
+    /* ───────── Hero ───────── */
+    .hero { position: relative; overflow: hidden; border-bottom: var(--line); }
+    .hero .wrap {
+      position: relative; z-index: 2;
+      display: grid; gap: 3rem; align-items: center;
+      padding-top: clamp(40px, 7vw, 88px); padding-bottom: clamp(150px, 20vw, 250px);
+    }
+    .hero h1 { font-size: clamp(2.9rem, 9.4vw, 7.2rem); margin: 1rem 0 1.6rem; }
+    .hero .lead { max-width: 34rem; font-size: 1.2rem; color: var(--ink-soft); margin: 0 0 2rem; }
+    .hero .lead b { color: var(--ink); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .peaks { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: clamp(120px, 18vw, 230px); z-index: 1; display: block; }
+    @media (min-width: 960px) {
+      .hero .wrap { grid-template-columns: 1.55fr 1fr; }
+    }
+
+    /* kargo etiketi */
+    .label {
+      position: relative; background: #fff; border: var(--line);
+      padding: 1.1rem 1.25rem 1.3rem; max-width: 340px; width: 100%;
+      justify-self: center;
+      transform: rotate(-3deg);
+      box-shadow: 8px 8px 0 var(--ice-2);
+      animation: drop .7s cubic-bezier(.2,.8,.2,1) both .15s;
+    }
+    .label::before { /* kesik çizgi */
+      content: ""; position: absolute; inset: 7px; border: 1.5px dashed var(--ink-soft); opacity: .45; pointer-events: none;
+    }
+    .label-top {
+      display: flex; justify-content: space-between; gap: 1rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+      padding-bottom: .7rem; border-bottom: var(--line); margin-bottom: .9rem;
+    }
+    .label-row small {
+      display: block; font-family: 'IBM Plex Mono', monospace; font-size: .68rem; letter-spacing: .12em; color: var(--ink-soft); text-transform: uppercase;
+    }
+    .label-row b { display: block; font-weight: 850; font-stretch: 72%; font-size: 1.9rem; text-transform: uppercase; line-height: 1; margin-top: .2rem; }
+    .label-arrow { font-family: 'IBM Plex Mono', monospace; font-size: 1.4rem; color: var(--red); margin: .45rem 0; line-height: 1; }
+    .barcode {
+      height: 46px; margin-top: 1.2rem;
+      background: repeating-linear-gradient(90deg,
+        var(--ink) 0 2px, transparent 2px 5px,
+        var(--ink) 5px 9px, transparent 9px 11px,
+        var(--ink) 11px 12px, transparent 12px 16px,
+        var(--ink) 16px 19px, transparent 19px 22px);
+    }
+    .barcode-num { font-family: 'IBM Plex Mono', monospace; font-size: .68rem; letter-spacing: .3em; margin-top: .35rem; text-align: center; }
+    .stamp {
+      position: absolute; right: -14px; bottom: 54px;
+      border: 3px solid var(--red); color: var(--red); background: rgba(245,248,251,.92);
+      font-weight: 850; font-stretch: 70%; font-size: 1.5rem; text-transform: uppercase; letter-spacing: .04em;
+      padding: .15rem .65rem; transform: rotate(-9deg);
+      animation: stamp .35s cubic-bezier(.3,1.6,.5,1) both 1s;
+    }
+    @keyframes drop { from { opacity: 0; transform: translateY(-26px) rotate(-8deg); } }
+    @keyframes stamp { from { opacity: 0; transform: rotate(-9deg) scale(2); } }
+
+    /* ───────── İlçe şeridi ───────── */
+    .strip { background: var(--red); color: #fff; border-bottom: var(--line); overflow: hidden; }
+    .strip-track {
+      display: flex; width: max-content;
+      animation: slide 42s linear infinite;
+    }
+    .strip:hover .strip-track { animation-play-state: paused; }
+    .strip span {
+      font-weight: 850; font-stretch: 70%; text-transform: uppercase; font-size: 1.6rem; letter-spacing: .02em;
+      padding: .75rem 1.1rem; white-space: nowrap; display: flex; align-items: center; gap: 2.2rem;
+    }
+    .strip span::after { content: "→"; font-family: 'IBM Plex Mono', monospace; font-weight: 400; opacity: .7; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* ───────── Bölüm başlıkları ───────── */
+    section { padding: clamp(56px, 9vw, 112px) 0; }
+    .sec-head { display: grid; gap: 1rem; margin-bottom: clamp(32px, 5vw, 56px); }
+    .sec-head h2 { font-size: clamp(2.4rem, 6.4vw, 4.8rem); }
+
+    /* ───────── Hizmetler ───────── */
+    .services { display: grid; border: var(--line); background: #fff; }
+    .svc { padding: 1.6rem 1.5rem 1.8rem; border-bottom: var(--line); }
+    .svc:last-child { border-bottom: 0; }
+    .svc .n { font-family: 'IBM Plex Mono', monospace; font-size: .8rem; color: var(--red); font-weight: 500; letter-spacing: .1em; }
+    .svc h3 { font-weight: 850; font-stretch: 72%; font-size: 1.9rem; text-transform: uppercase; line-height: 1; margin: .7rem 0 .6rem; }
+    .svc p { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+    @media (min-width: 900px) {
+      .services { grid-template-columns: repeat(4, 1fr); }
+      .svc { border-bottom: 0; border-right: var(--line); }
+      .svc:last-child { border-right: 0; }
+    }
+
+    /* ───────── Galeri ───────── */
+    .gallery-sec { background: var(--ice); border-top: var(--line); border-bottom: var(--line); }
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; gap: 14px; }
+    .shot {
+      position: relative; margin: 0; overflow: hidden; cursor: zoom-in;
+      border: var(--line); background: var(--ice-2);
+      background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgba(13,27,42,.06) 14px 15px);
+    }
+    .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .shot:hover img { transform: scale(1.04); }
+    .shot figcaption {
+      position: absolute; left: 0; bottom: 0; background: var(--ink); color: var(--snow);
+      font-family: 'IBM Plex Mono', monospace; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .6rem;
+    }
+    .shot.empty { cursor: default; }
+    .shot.empty img { display: none; }
+    .shot.empty::after {
+      content: attr(data-hint); position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 1rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft);
+    }
+    .shot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .shot:nth-child(6) { grid-column: span 2; }
+    @media (min-width: 860px) {
+      .shot:nth-child(6) { grid-column: auto; }
+      .gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 230px; }
+      .shot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    }
+    dialog.lightbox { border: var(--line); padding: 0; background: var(--ink); max-width: min(92vw, 1100px); }
+    dialog.lightbox::backdrop { background: rgba(13,27,42,.82); }
+    dialog.lightbox img { max-height: 86vh; width: auto; margin: 0 auto; }
+
+    /* ───────── İşimiz ───────── */
+    .about { display: grid; gap: 2rem; }
+    .about .big { font-weight: 800; font-stretch: 80%; font-size: clamp(1.5rem, 3.6vw, 2.5rem); line-height: 1.15; margin: 0; max-width: 34ch; }
+    .about .big mark { background: none; color: var(--red); }
+    .about p.small { margin: 0; color: var(--ink-soft); max-width: 40rem; }
+    @media (min-width: 900px) { .about { grid-template-columns: 1fr 1.6fr; align-items: start; } }
+
+    /* ───────── Nasıl çalışır ───────── */
+    .steps { display: grid; gap: 0; counter-reset: s; border-top: var(--line); }
+    .step { display: grid; grid-template-columns: 4.2rem 1fr; gap: 1rem; padding: 1.5rem 0; border-bottom: var(--line); align-items: baseline; }
+    .step::before {
+      counter-increment: s; content: counter(s, decimal-leading-zero);
+      font-weight: 850; font-stretch: 70%; font-size: 3.2rem; line-height: .9; color: var(--red);
+    }
+    .step h3 { grid-column: 2; margin: 0 0 .25rem; font-weight: 850; font-stretch: 72%; font-size: 1.8rem; text-transform: uppercase; line-height: 1; }
+    .step p { grid-column: 2; margin: 0; color: var(--ink-soft); }
+    @media (min-width: 900px) { .step { grid-template-columns: 6rem 18rem 1fr; } .step h3 { grid-column: auto; margin: 0; } .step p { grid-column: auto; } }
+
+    /* ───────── Büyük çağrı ───────── */
+    .call { background: var(--ink); color: var(--snow); border-top: var(--line); }
+    .call .eyebrow { color: var(--ice-2); }
+    .call h2 { font-size: clamp(2.6rem, 8vw, 6.2rem); margin: 1rem 0 2rem; }
+    .call .num {
+      display: block; text-decoration: none; color: var(--snow);
+      font-weight: 850; font-stretch: 68%; font-size: clamp(2.2rem, 8.2vw, 6.6rem); line-height: .95; letter-spacing: .01em; white-space: nowrap;
+      border-bottom: 4px solid var(--red); padding-bottom: .15em; width: fit-content; max-width: 100%;
+    }
+    .call .num:hover { color: var(--red); }
+    .call .cta-row { margin-top: 2.2rem; }
+    .call .btn-line { color: var(--snow); border-color: var(--snow); }
+    .call .btn-line:hover { background: var(--snow); color: var(--ink); }
+    .call .btn-red { box-shadow: 5px 5px 0 var(--ice-2); }
+
+    footer { background: var(--ink); color: var(--ice-2); border-top: 1px solid rgba(221,232,241,.25); padding: 28px 0; font-size: .9rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; }
+    footer a { text-decoration: none; border-bottom: 1px solid currentColor; }
+    footer a:hover { color: #fff; }
+
+    /* ───────── Mobil sabit bar ───────── */
+    .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; border-top: var(--line); }
+    .dock a {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: 1.05rem 0; text-decoration: none; font-weight: 850; font-stretch: 80%;
+      text-transform: uppercase; font-size: 1.1rem; letter-spacing: .03em;
+    }
+    .dock .d-call { background: var(--red); color: #fff; }
+    .dock .d-wa { background: var(--snow); color: var(--ink); border-left: var(--line); }
+    .dock svg { width: 1.2em; height: 1.2em; }
+    @media (min-width: 860px) { .dock { display: none; } body { padding-bottom: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .strip-track, .label, .stamp { animation: none; }
+      .shot img, .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    ╔══════════════════════ DÜZENLENECEK YERLER ══════════════════════
+    ║ 1) Aşağıdaki CONFIG içine gerçek telefon / WhatsApp / Instagram
+    ║ 2) Galeri fotoğrafları: images/is-1.jpg … is-6.jpg olarak klasöre at
+    ╚══════════════════════════════════════════════════════════════════
+  -->
+
+  <header class="nav">
+    <div class="wrap">
+      <a href="#" class="logo" aria-label="Erzurum Kurye ana sayfa"><i></i>Erzurum Kurye</a>
+      <nav class="nav-links" aria-label="Sayfa bölümleri">
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#isler">İşlerimiz</a>
+        <a href="#nasil">Nasıl</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+      <a class="btn btn-red" data-tel href="#iletisim">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>
+        <span data-phone-text>Ara</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══════════ HERO ═══════════ -->
+    <div class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow"><b>●</b> Şehir içi · İlçeler arası</span>
+          <h1 class="display">Erzurum’un her yerine <span class="red">hızla ve güvenle</span> ulaşıyoruz!</h1>
+          <p class="lead">Şehir merkezinden en uzak ilçeye kadar. <b>Arayın, adresi birlikte netleştirelim,</b> paketiniz yola çıksın.</p>
+          <div class="cta-row">
+            <a class="btn btn-red" data-tel href="#iletisim">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>
+              Hemen Ara
+            </a>
+            <a class="btn btn-line" data-wa target="_blank" rel="noopener noreferrer" href="#iletisim">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="label" aria-hidden="true">
+          <div class="label-top"><span>Kurye gönderisi</span><span>EK&#8209;0001</span></div>
+          <div class="label-row"><small>Gönderen</small><b>Kapınız</b></div>
+          <div class="label-arrow">↓</div>
+          <div class="label-row"><small>Alıcı</small><b>Erzurum’un her yeri</b></div>
+          <div class="barcode"></div>
+          <div class="barcode-num">2 5 0 0 1 4 2 5</div>
+          <div class="stamp">Teslim edildi</div>
+        </div>
+      </div>
+
+      <!-- Palandöken silueti: düz, gradient yok -->
+      <svg class="peaks" viewBox="0 0 1440 230" preserveAspectRatio="none" aria-hidden="true">
+        <polygon fill="#DDE8F1" points="0,230 0,120 120,60 230,115 360,20 500,110 610,70 740,130 880,40 1010,115 1130,65 1260,120 1360,80 1440,110 1440,230"/>
+        <polygon fill="#C4D6E6" points="0,230 0,175 150,120 270,170 420,105 560,172 700,128 840,180 990,118 1120,175 1270,130 1440,178 1440,230"/>
+        <polygon fill="#0D1B2A" points="0,230 0,214 1440,214 1440,230"/>
+      </svg>
+    </div>
+
+    <!-- ═══════════ İLÇE ŞERİDİ ═══════════ -->
+    <div class="strip" aria-label="Hizmet verdiğimiz bölgeler">
+      <div class="strip-track" id="strip" aria-hidden="true"></div>
+    </div>
+
+    <!-- ═══════════ HİZMETLER ═══════════ -->
+    <section id="hizmetler">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow"><b>01</b> / Hizmetler</span>
+          <h2 class="display">Ne yapıyoruz?</h2>
+        </div>
+        <div class="services">
+          <div class="svc">
+            <span class="n">A</span>
+            <h3>Şehir içi kurye</h3>
+            <p>Erzurum içinde adresten adrese hızlı teslimat.</p>
+          </div>
+          <div class="svc">
+            <span class="n">B</span>
+            <h3>İlçeler arası</h3>
+            <p>Şehir merkezinden en uzak ilçeye kadar tüm gönderiler.</p>
+          </div>
+          <div class="svc">
+            <span class="n">C</span>
+            <h3>Güvenli taşıma</h3>
+            <p>Taşıdığımız her paketi kendi sorumluluğumuz biliriz.</p>
+          </div>
+          <div class="svc">
+            <span class="n">D</span>
+            <h3>Doğrudan iletişim</h3>
+            <p>Aracı yok. Bizi arayın, işinizi birlikte netleştirelim.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ GALERİ ═══════════ -->
+    <section class="gallery-sec" id="isler">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow"><b>02</b> / İşlerimiz</span>
+          <h2 class="display">Yaptığımız işlerden</h2>
+        </div>
+        <div class="gallery" id="gallery">
+          <figure class="shot" data-hint="Fotoğraf 1 · images/is-1.jpg"><img src="images/is-1.jpg" alt="Kurye teslimatından bir kare" loading="lazy"><figcaption>Teslimat 01</figcaption></figure>
+          <figure class="shot" data-hint="Fotoğraf 2 · images/is-2.jpg"><img src="images/is-2.jpg" alt="Kurye teslimatından bir kare" loading="lazy"><figcaption>Teslimat 02</figcaption></figure>
+          <figure class="shot" data-hint="Fotoğraf 3 · images/is-3.jpg"><img src="images/is-3.jpg" alt="Kurye teslimatından bir kare" loading="lazy"><figcaption>Teslimat 03</figcaption></figure>
+          <figure class="shot" data-hint="Fotoğraf 4 · images/is-4.jpg"><img src="images/is-4.jpg" alt="Kurye teslimatından bir kare" loading="lazy"><figcaption>Teslimat 04</figcaption></figure>
+          <figure class="shot" data-hint="Fotoğraf 5 · images/is-5.jpg"><img src="images/is-5.jpg" alt="Kurye teslimatından bir kare" loading="lazy"><figcaption>Teslimat 05</figcaption></figure>
+          <figure class="shot" data-hint="Fotoğraf 6 · images/is-6.jpg"><img src="images/is-6.jpg" alt="Kurye teslimatından bir kare" loading="lazy"><figcaption>Teslimat 06</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ İŞİMİZ ═══════════ -->
+    <section id="isimiz">
+      <div class="wrap about">
+        <div class="sec-head" style="margin:0">
+          <span class="eyebrow"><b>03</b> / İşimiz</span>
+          <h2 class="display">Taşıdığımız<br>her paket<br><span class="red">bizim.</span></h2>
+        </div>
+        <div style="display:grid; gap:1.4rem">
+          <p class="big">Şehir merkezinden en uzak ilçeye kadar tüm teslimat süreçlerinizi <mark>profesyonel bir titizlikle</mark> yürütüyoruz.</p>
+          <p class="small">Taşınan her paketi kendi sorumluluğumuz bilip, hızlı ve güvenli bir şekilde alıcısına ulaştırıyoruz. Erzurum içi ve ilçeler arası kurye gönderilerinizde çözüm ortağınız olmaktan gurur duyuyoruz.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ NASIL ═══════════ -->
+    <section id="nasil" style="padding-top:0">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow"><b>04</b> / Nasıl çalışır</span>
+          <h2 class="display">Üç adım.</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><h3>Arayın</h3><p>Telefon ya da WhatsApp. Ne gönderecekseniz kısaca anlatın.</p></div>
+          <div class="step"><h3>Adresi netleştirelim</h3><p>Alınacak ve teslim edilecek adresi birlikte doğrularız.</p></div>
+          <div class="step"><h3>Kurye teslim eder</h3><p>Paket kapınızdan alınır, alıcıya ulaştırılır.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ İLETİŞİM ═══════════ -->
+    <section class="call" id="iletisim">
+      <div class="wrap">
+        <span class="eyebrow">05 / İletişim</span>
+        <h2 class="display">Gönderiniz mi var?</h2>
+        <a class="num mono-free" data-tel data-phone-text href="#iletisim">0 (5XX) XXX XX XX</a>
+        <div class="cta-row">
+          <a class="btn btn-red" data-tel href="#iletisim">Hemen Ara</a>
+          <a class="btn btn-line" data-wa target="_blank" rel="noopener noreferrer" href="#iletisim">WhatsApp’tan Yaz</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Erzurum Kurye</span>
+      <a data-ig target="_blank" rel="noopener noreferrer" href="#">Instagram</a>
+    </div>
+  </footer>
+
+  <!-- Mobil sabit bar -->
+  <nav class="dock" aria-label="Hızlı iletişim">
+    <a class="d-call" data-tel href="#iletisim">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>
+      Ara
+    </a>
+    <a class="d-wa" data-wa target="_blank" rel="noopener noreferrer" href="#iletisim">WhatsApp</a>
+  </nav>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Fotoğraf büyütme"><img alt=""></dialog>
+
+  <script>
+    // ═══════ BURAYI DOLDUR ═══════
+    const CONFIG = {
+      phone: "+905XXXXXXXXX",            // tel: linki için (boşluksuz)
+      phoneDisplay: "0 (5XX) XXX XX XX", // ekranda görünen
+      whatsapp: "905XXXXXXXXX",          // wa.me için (+ ve boşluk yok)
+      whatsappText: "Merhaba, kurye hizmeti için bilgi almak istiyorum",
+      instagram: "#",                    // Instagram profil linki
+      hideEmptyPhotos: false             // true: fotoğrafı olmayan kutuları gizle (yayına çıkarken)
+    };
+
+    // iletişim bilgilerini tek yerden bağla
+    document.querySelectorAll("[data-tel]").forEach(a => a.href = "tel:" + CONFIG.phone);
+    document.querySelectorAll("[data-wa]").forEach(a =>
+      a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.whatsappText));
+    document.querySelectorAll("[data-ig]").forEach(a => a.href = CONFIG.instagram);
+    document.querySelectorAll("[data-phone-text]").forEach(el => {
+      // menüdeki küçük butonda sadece "Ara" yazsın, büyük numara alanında numara görünsün
+      if (el.classList.contains("num")) el.textContent = CONFIG.phoneDisplay;
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ilçe şeridi
+    const DISTRICTS = ["Yakutiye","Palandöken","Aziziye","Aşkale","Pasinler","Horasan","Oltu","Tortum","İspir","Hınıs","Tekman","Karayazı","Narman","Olur","Çat","Köprüköy","Karaçoban","Pazaryolu","Şenkaya","Uzundere"];
+    const strip = document.getElementById("strip");
+    const html = DISTRICTS.map(d => "<span>" + d + "</span>").join("");
+    strip.innerHTML = html + html; // kesintisiz kayma için iki kez
+
+    // galeri: yüklenemeyen fotoğraf kutusunu boş göster / gizle
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = lightbox.querySelector("img");
+    document.querySelectorAll("#gallery .shot").forEach(fig => {
+      const img = fig.querySelector("img");
+      const fail = () => CONFIG.hideEmptyPhotos ? fig.remove() : fig.classList.add("empty");
+      img.addEventListener("error", fail);
+      if (img.complete && img.naturalWidth === 0 && img.currentSrc) fail();
+      fig.addEventListener("click", () => {
+        if (fig.classList.contains("empty")) return;
+        lbImg.src = img.currentSrc || img.src;
+        lbImg.alt = img.alt;
+        lightbox.showModal();
+      });
+    });
+    lightbox.addEventListener("click", () => lightbox.close());
+  </script>
+</body>
+</html>
